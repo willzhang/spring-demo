@@ -1,38 +1,32 @@
-# Read Me First
-The following was discovered as part of building this project:
+## Getting started
 
-* The original package name 'com.example.spring-demo' is invalid and this project uses 'com.example.springdemo' instead.
+build with maven
 
-# Getting Started
+```
+https://github.com/willzhang/spring-demo.git
+cd spring-demo
+mvn clean package
+```
 
-### Reference Documentation
-For further reference, please consider the following sections:
+run with docker
 
-* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
-* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.3.3.RELEASE/maven-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.3.3.RELEASE/maven-plugin/reference/html/#build-image)
-* [Spring Web](https://docs.spring.io/spring-boot/docs/2.3.3.RELEASE/reference/htmlsingle/#boot-features-developing-web-applications)
-
-### Guides
-The following guides illustrate how to use some features concretely:
-
-* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
-* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
-* [Building REST services with Spring](https://spring.io/guides/tutorials/bookmarks/)
-
-
+```
+docker run -d --restart always \
+  --name spring-demo \
+  -p 8080:8080 \
+  willdockerhub/spring-demo
+```
 
 ## how to generate this demo
 
-访问:[https://start.spring.io/](https://start.spring.io/)，勾选2.3.3，添加spring web
+[https://start.spring.io/](https://start.spring.io/)
 
-![](../images/screenshot_1597336056112.png)
+[https://spring.io/guides/gs/spring-boot/](https://spring.io/guides/gs/spring-boot/)
 
-## 添加web
 
-参考：[https://spring.io/guides/gs/spring-boot/](https://spring.io/guides/gs/spring-boot/)
+add follow web class
 
-创建HelloController.java，配置以下内容
+src\main\java\com\example\springdemo\HelloController.java
 
 ```
 HelloController.java
@@ -53,7 +47,7 @@ public class HelloController {
 }
 ```
 
-修改Application.java
+src\main\java\com\example\springdemo\Application.java
 
 ```
 package com.example.springboot;
