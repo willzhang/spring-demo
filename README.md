@@ -3,7 +3,7 @@
 build with maven
 
 ```
-https://github.com/willzhang/spring-demo.git
+git clone https://github.com/willzhang/spring-demo.git
 cd spring-demo
 mvn clean package
 ```
