@@ -19,7 +19,7 @@ docker run -d --restart always \
 
 ## how to generate this demo
 
-reference follow link:
+Refer to the link below：
 
 [https://start.spring.io/](https://start.spring.io/)
 
