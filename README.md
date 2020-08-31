@@ -8,6 +8,9 @@ build with maven
 git clone https://github.com/willzhang/spring-demo.git
 cd spring-demo
 mvn clean package
+
+docker build -t willdockerhub/spring-demo .
+docker push willdockerhub/spring-demo
 ```
 
 run with docker
@@ -18,6 +21,13 @@ docker run -d --restart always \
   -p 8080:8080 \
   willdockerhub/spring-demo
 ```
+
+access web for test
+```
+# curl <your-ip>:8080
+Hello Spring Boot Demo!
+```
+
 
 ## how to generate this demo
 
