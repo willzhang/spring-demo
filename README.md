@@ -6,9 +6,8 @@ build with maven
 
 ```
 git clone https://github.com/willzhang/spring-demo.git
-cd spring-demo
-mvn clean package
 
+docker run -it -v ${PWD}/spring-demo:/workspace -w /workspace maven mvn clean package 
 docker build -t willdockerhub/spring-demo .
 docker push willdockerhub/spring-demo
 ```
