@@ -16,5 +16,6 @@ spec:
         app: spring-demo
     spec:
       containers:
-      - image: {{ .Values.image }}
+      - image: "{{ .Values.image.repository }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
         name: spring-demo
