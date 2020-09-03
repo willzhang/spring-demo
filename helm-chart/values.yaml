@@ -4,4 +4,4 @@ image:
 service:
   Port: 8080
   targetPort: 8080
-  Type: ClusterIP
+  type: ClusterIP
