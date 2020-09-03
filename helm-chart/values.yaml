@@ -1,20 +1,7 @@
 replicaCount: 1
 image:
-  repository: willdockerhub/spring-demo
-  tag: latest
-  pullPolicy: Always
+  repository: willdockerhub/spring-demo:latest
 service:
   Port: 8080
   targetPort: 8080
-  Type: ClusterIP 
-
-
-service:
-    type:
-    nodePort:
-    
-  servicePort: 8080
-  targetPort: 8080
-  # For minikube, set this to NodePort, elsewhere use LoadBalancer
-  # Use ClusterIP if your setup includes ingress controller
-  serviceType: ClusterIP    
+  Type: ClusterIP
