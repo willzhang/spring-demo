@@ -4,6 +4,7 @@ metadata:
   labels:
     app: spring-demo
   name: spring-demo-svc
+  namespace: default
 spec:
   type: {{ .Values.service.type }}
   ports:
