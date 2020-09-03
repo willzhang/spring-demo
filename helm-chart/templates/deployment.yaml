@@ -4,6 +4,7 @@ metadata:
   labels:
     app: spring-demo
   name: spring-demo
+  namespace: default
 spec:
   replicas: 1
   selector:
