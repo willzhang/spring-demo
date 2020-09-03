@@ -1,13 +1,6 @@
-FROM openjdk:11-jre-slim
-
+FROM openjdk:12-jdk-alpine
+EXPOSE 8080
 ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-
-WORKDIR /home
-
-COPY target/spring-demo*.jar app.jar
-
-EXPOSE 8080
-
-ENTRYPOINT ["java", "-jar", "app.jar"] 
-
+ADD target/spring-demo*.jar app.jar
+ENTRYPOINT ["java", "-jar", "app.jar"]
