@@ -10,14 +10,7 @@ pipeline {
         }
     } 
 
-    stages {
-        
-        stage('SCM Checkout') {
-            steps {
-                git branch: "master", credentialsId: 'github', url: 'https://github.com.cnpmjs.org/willzhang/spring-demo.git'
-            }
-        }
-          
+    stages {        
         stage('source build') {
             steps {
                 container('maven') {
