@@ -8,9 +8,10 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   ports:
-  - port: {{ .Values.service.Port }}
+  - port: {{ .Values.service.port }}
     protocol: TCP
     targetPort: {{ .Values.service.targetPort }}
     nodePort: {{ .Values.service.nodePort }}
   selector:
-    app: spring-demo
+    app: spring-demo    
+    
