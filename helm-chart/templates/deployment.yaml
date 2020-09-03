@@ -6,7 +6,7 @@ metadata:
   name: spring-demo
   namespace: default
 spec:
-  replicas: 1
+  replicas: "{{ .Values.replicaCount }}"
   selector:
     matchLabels:
       app: spring-demo
