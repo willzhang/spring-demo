@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: spring-demo
+  name: spring-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-demo
+  template:
+    metadata:
+      labels:
+        app: spring-demo
+    spec:
+      containers:
+      - image: {{ .Values.image }}
+        name: spring-demo
