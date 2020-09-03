@@ -6,7 +6,7 @@ metadata:
   name: spring-demo
   namespace: default
 spec:
-  replicas: "{{ .Values.replicaCount }}"
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app: spring-demo
@@ -16,6 +16,6 @@ spec:
         app: spring-demo
     spec:
       containers:
-      - image: "{{ .Values.image.repository }}"
+      - image: {{ .Values.image.repository }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         name: spring-demo
