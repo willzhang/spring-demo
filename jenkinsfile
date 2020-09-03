@@ -1,0 +1,78 @@
+pipeline {
+    environment {
+        REGISTRY='registry.cn-shenzhen.aliyuncs.com/willspace/spring-demo'
+        VERSION = "${env.BUILD_ID}"
+        REGISTRY_CREDENTIAL = 'aliyun'
+    }
+    agent {
+        kubernetes {
+            yamlFile 'build.yaml'
+        }
+    } 
+
+    stages {
+        
+        stage('SCM Checkout') {
+            steps {
+                git branch: "master", credentialsId: 'github', url: 'https://github.com.cnpmjs.org/willzhang/spring-demo.git'
+            }
+        }
+          
+        stage('source build') {
+          steps {
+            container('maven') {
+              sh 'mvn package'
+            }
+          }
+        }
+
+        stage('docker build') {
+          steps {
+            container('docker') {
+              sh 'docker build -t ${REGISTRY}:${VERSION} .'
+            }
+          }
+        }
+
+        stage('docker publish') {
+            steps {
+                container('docker') {
+                    withDockerRegistry([credentialsId: "${REGISTRY_CREDENTIAL}", url: "https://registry.cn-shenzhen.aliyuncs.com"]) {
+                        sh "docker push ${REGISTRY}:${VERSION}"
+                    }
+                }
+            }
+        }
+
+        stage('app deploy with kubectl') {
+          steps {
+            container('kubectl') {
+                withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
+                sh """
+                    mkdir -p /root/.kube/ && echo $KUBECONFIG >/root/.kube/config
+                    sed -i "s#spring-boot-demo-image#${REGISTRY}:${VERSION}#g" k8s/deployment.yaml
+                    kubectl apply -f k8s/deployment.yaml
+                    """
+                }
+            }
+          }
+        }
+
+        stage('app deploy with helm') {
+          steps {
+            container('helm') {
+                withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
+                sh """
+                    mkdir -p /root/.kube/ && echo $KUBECONFIG >/root/.kube/config
+                    helm -n default upgrade --install spring-demo \
+                      --set service.type=NodePort \
+                      --set service.nodePort=30085 \
+                      --set image.repository=${REGISTRY}:${VERSION} \
+                      helm/
+                    """
+                }
+            }
+          }
+        }
+    }
+}
