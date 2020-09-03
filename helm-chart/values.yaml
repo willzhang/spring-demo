@@ -1,5 +1,5 @@
 replicaCount: 1
 image: willdockerhub/spring-demo
 service:
-    type: ClusterIP
+    type:
     nodePort:
