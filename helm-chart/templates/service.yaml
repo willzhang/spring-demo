@@ -6,7 +6,7 @@ metadata:
   name: spring-demo-svc
   namespace: default
 spec:
-  type: {{ .Values.service.Type }}
+  type: {{ .Values.service.type }}
   ports:
   - port: {{ .Values.service.Port }}
     protocol: TCP
