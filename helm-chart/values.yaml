@@ -2,6 +2,6 @@ replicaCount: 1
 image:
   repository: willdockerhub/spring-demo:latest
 service:
-  Port: 8080
+  port: 8080
   targetPort: 8080
   type: ClusterIP
