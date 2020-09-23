@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: spring-boot-demo
-  namespace: demo-ns
+  namespace: ci-namespace
 spec:
   selector:
     matchLabels:
@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: spring-boot-demo
-        image: $REGISTRY/$REGISTRY_NAMESPACE/$APP_NAME:SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER
+        image: ci-image
         ports:
         - containerPort: 8080
 ---
@@ -23,7 +23,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: spring-boot-service
-  namespace: demo-ns
+  namespace: ci-namespace
   labels:
     app: spring-boot-service
 spec:
