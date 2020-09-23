@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: spring-boot-demo
-        image: spring-boot-demo-image
+        image: $REGISTRY/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER
         ports:
         - containerPort: 8080
 ---
