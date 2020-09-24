@@ -4,7 +4,7 @@ metadata:
   labels:
     app: spring-demo1
   name: spring-demo1
-  namespace: default
+  namespace: {{ .Values.metadata.namespace }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
