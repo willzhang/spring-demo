@@ -2,20 +2,20 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: spring-demo
-  name: spring-demo
+    app: spring-demo1
+  name: spring-demo1
   namespace: default
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: spring-demo
+      app: spring-demo1
   template:
     metadata:
       labels:
-        app: spring-demo
+        app: spring-demo1
     spec:
       containers:
       - image: {{ .Values.image.repository }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
-        name: spring-demo
+        name: spring-demo1
