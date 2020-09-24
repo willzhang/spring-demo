@@ -1,4 +1,6 @@
 replicaCount: 1
+metadata:
+  namespace: default
 image:
   repository: willdockerhub/spring-demo:latest
 service:
