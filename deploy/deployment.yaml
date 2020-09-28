@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: demo-app
+  name: demo
+  namespace: ${NAMESPACE}
+spec:
+  selector:
+    matchLabels:
+      app: demo-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: demo-app
+    spec:
+      containers:
+      - name: demo-app
+        image: registry.cn-shenzhen.aliyuncs.com/images_mirror/nginx:latest
+        ports:
+        - containerPort: 80

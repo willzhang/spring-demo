@@ -1,0 +1,35 @@
+pipeline {
+  agent {
+    kubernetes {
+      yaml '''
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: jenkins-agent
+spec:
+  containers:
+  - name: maven
+    image: registry.cn-shenzhen.aliyuncs.com/images_mirror/maven:latest
+    command:
+    - cat
+    tty: true
+'''
+      label 'default'
+    }
+  }
+
+  stages {
+        stage('scm checkout') {
+            steps {
+                git(url: 'https://github.com.cnpmjs.org/willzhang/spring-demo.git', credentialsId: 'git-id', branch: 'master', changelog: true, poll: false)
+            }
+        }
+
+        stage('deploy app') {
+            steps {
+                kubernetesDeploy(enableConfigSubstitution: true, deleteResource: true, kubeconfigId: 'kubeconfig', configs: 'deploy/deployment.yaml')
+            }
+        }
+  }
+}
