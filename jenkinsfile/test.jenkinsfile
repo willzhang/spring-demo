@@ -20,6 +20,7 @@ spec:
   }
 
   environment {
+      GIT_CREDENTIAL_ID = 'git-id'
       KUBECONFIG_CREDENTIAL_ID = 'demo-kubeconfig'
       NAMESPACE = 'demo-ns'
   }
@@ -27,13 +28,13 @@ spec:
   stages {
         stage('scm checkout') {
             steps {
-                git(url: 'https://github.com.cnpmjs.org/willzhang/spring-demo.git', credentialsId: 'git-id', branch: 'master', changelog: true, poll: false)
+                git(url: 'https://github.com.cnpmjs.org/willzhang/spring-demo.git', credentialsId: "$GIT_CREDENTIAL_ID", branch: 'master', changelog: true, poll: false)
             }
         }
 
         stage('deploy app') {
             steps {
-                kubernetesDeploy(enableConfigSubstitution: true, deleteResource: true, kubeconfigId: 'kubeconfig', configs: 'deploy/deployment.yaml')
+                kubernetesDeploy(enableConfigSubstitution: true, deleteResource: true, kubeconfigId: "$KUBECONFIG_CREDENTIAL_ID", configs: 'deploy/deployment.yaml')
             }
         }
   }
